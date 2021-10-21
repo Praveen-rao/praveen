@@ -29,7 +29,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "463301052874.dkr.ecr.us-east-1.amazonaws.com/demo",
+      "image":  "<IMAGE>",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -56,7 +56,7 @@
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:463301052874:task-definition/hello-world:6",
+  "taskDefinitionArn": "<TASK_DEFINITION>",
   "family": "hello-world",
   "requiresAttributes": [
     {
