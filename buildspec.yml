@@ -8,7 +8,7 @@ phases:
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - REPOSITORY_URI=463301052874.dkr.ecr.us-east-1.amazonaws.com/demo
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
     commands:
       - echo Build started on `date`
@@ -19,8 +19,10 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - printf '[{"name":"demo","imageUri":$REPOSITORY_URI:$IMAGE_TAG}]' > imageDetail.json
+      - printf '[{"name":"demo","imageUri":$REPOSITORY_URI:IMAGE_TAG}]' > imageDetail.json
+      - cat imageDetail.json
 artifacts:
   files:
     - imageDetail.json
