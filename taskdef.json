@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": null,
+  "executionRoleArn": "arn:aws:iam::463301052874:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -9,7 +9,6 @@
       "entryPoint": null,
       "portMappings": [
         {
-          "hostPort": 8080,
           "protocol": "tcp",
           "containerPort": 5000
         }
@@ -29,7 +28,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image":  "<IMAGE>",
+      "image": "<IMAGE>",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -46,24 +45,36 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "hello-world"
+      "name": "demo"
     }
   ],
   "placementConstraints": [],
-  "memory": "500",
-  "taskRoleArn": null,
+  "memory": "400",
+  "taskRoleArn": "arn:aws:iam::463301052874:role/ecstaskRole",
   "compatibilities": [
     "EXTERNAL",
     "EC2"
   ],
   "taskDefinitionArn": "<TASK_DEFINITION>",
-  "family": "hello-world",
+  "family": "demo",
   "requiresAttributes": [
     {
       "targetId": null,
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
     }
   ],
   "pidMode": null,
@@ -71,8 +82,8 @@
     "EC2"
   ],
   "networkMode": null,
-  "cpu": "450",
-  "revision": 6,
+  "cpu": "350",
+  "revision": 7,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
